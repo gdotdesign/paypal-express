@@ -39,7 +39,7 @@ module Paypal
 
       def search!(startdate, transaction_id)
         params = {
-          :STARTDATE => startdate
+          :STARTDATE => startdate,
           :TRANSACTIONID => transaction_id
         }
         response = self.request :TransactionSearch, params
