@@ -37,7 +37,15 @@ module Paypal
         Response.new response
       end
 
-
+      def search!(startdate, transaction_id)
+        params = {
+          :STARTDATE => startdate
+          :TRANSACTIONID => transaction_id
+        }
+        response = self.request :TransactionSearch, params
+        Response.new response
+      end
+      
       # Recurring Payment Specific
 
       def subscribe!(token, recurring_profile)
