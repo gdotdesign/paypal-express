@@ -37,7 +37,7 @@ module Paypal
         Response.new response
       end
 
-      def search!(startdate, transaction_id)
+      def search(startdate, transaction_id)
         params = {
           :STARTDATE => startdate,
           :TRANSACTIONID => transaction_id

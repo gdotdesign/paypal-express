@@ -15,7 +15,8 @@ module Paypal
         :NOTIFYURL => :notify_url,
         :TIMESTAMP => :timestamp,
         :TOKEN => :token,
-        :VERSION => :version
+        :VERSION => :version,
+        :EMAIL => :email
       }
       attr_accessor *@@attribute_mapping.values
       attr_accessor :shipping_options_is_default, :success_page_redirect_requested, :insurance_option_selected
@@ -24,6 +25,7 @@ module Paypal
 
       def initialize(attributes = {})
         attrs = attributes.dup
+        puts attrs.inspect
         @@attribute_mapping.each do |key, value|
           self.send "#{value}=", attrs.delete(key)
         end
@@ -180,7 +182,6 @@ module Paypal
 
         # remove duplicated parameters
         attrs.delete(:SHIPTOCOUNTRY) # NOTE: Same with SHIPTOCOUNTRYCODE
-
         # warn ignored attrs
         attrs.each do |key, value|
           Paypal.log "Ignored Parameter (#{self.class}): #{key}=#{value}", :warn

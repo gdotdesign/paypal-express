@@ -3,6 +3,15 @@ module Paypal
     class Response::Item < Base
       cattr_reader :attribute_mapping
       @@attribute_mapping = {
+        :TIMESTAMP => :timestamp,
+        :TIMEZONE => :timezone,
+        :TRANSACTIONID => :transaction_id,
+        :TYPE => :type,
+        :EMAIL =>  :email,
+        :STATUS => :status,
+        :CURRENCYCODE => :currency,
+        :FEEAMT =>  :fee,
+        :NETAMT =>  :net,
         :NAME => :name,
         :DESC => :description,
         :QTY => :quantity,
@@ -25,7 +34,6 @@ module Paypal
           :total => attrs.delete(:AMT),
           :tax => attrs.delete(:TAXAMT)
         )
-
         # warn ignored params
         attrs.each do |key, value|
           Paypal.log "Ignored Parameter (#{self.class}): #{key}=#{value}", :warn
