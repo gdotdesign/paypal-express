@@ -25,7 +25,6 @@ module Paypal
 
       def initialize(attributes = {})
         attrs = attributes.dup
-        puts attrs.inspect
         @@attribute_mapping.each do |key, value|
           self.send "#{value}=", attrs.delete(key)
         end
